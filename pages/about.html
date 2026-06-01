@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>펜션 소개</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../common.css">
+</head>
+<body>
+<nav id="nav"></nav>
+
+<style>
+.about-full{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:64px;}
+.about-full:nth-child(even){direction:rtl;}
+.about-full:nth-child(even) > *{direction:ltr;}
+.about-full img{width:100%;height:380px;object-fit:cover;}
+.about-full-text{}
+.about-full-text p{font-size:.88rem;color:#555;line-height:1.9;margin-bottom:16px;}
+.map-section{background:var(--cr);padding:52px 0;}
+.map-placeholder{background:#e8f4e9;height:320px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;border:1px solid #d0e8d4;}
+.map-placeholder .map-pin{font-size:2.5rem;}
+.map-placeholder h3{font-family:"Nanum Myeongjo",serif;font-size:1.2rem;color:var(--g);}
+.map-placeholder p{font-size:.82rem;color:#666;text-align:center;line-height:1.6;}
+.dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
+.dir-item{background:#fff;padding:18px;border-left:3px solid var(--gl);}
+.dir-item h4{font-size:.82rem;font-weight:700;margin-bottom:6px;}
+.dir-item p{font-size:.78rem;color:#666;line-height:1.6;}
+@media(max-width:860px){.about-full{grid-template-columns:1fr;}.about-full:nth-child(even){direction:ltr;}.dir-grid{grid-template-columns:1fr;}}
+</style>
+<div class="page-hero" style="background-image:url('../images/main/main_01.jpg')">
+  <div class="page-hero-content">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> · 펜션소개</div>
+    <h1 class="page-title">펜션 소개</h1>
+  </div>
+</div>
+<div class="sub-tabs">
+  <div class="sub-tabs-inner">
+    <a class="sub-tab on" href="about.html">펜션소개</a>
+  </div>
+</div>
+<section class="sw">
+  <div class="cn">
+    <div class="about-full rv">
+      <img src="../images/main/main_01.jpg" alt="펜션 전경">
+      <div class="about-full-text">
+        <p class="slb">About Us</p>
+        <h2 class="sti" id="t-atit"></h2>
+        <div class="dvd"></div>
+        <p id="t-adesc"></p>
+        <p>가족 여행부터 커플, 소그룹 모임까지 모두에게 잊지 못할 공간이 되겠습니다. 계룡산의 맑은 공기와 아름다운 자연 속에서 일상의 피로를 잠시 내려놓으세요.</p>
+      </div>
+    </div>
+    <div class="about-full rv">
+      <img src="../images/main/main_02.jpg" alt="펜션 내부">
+      <div class="about-full-text">
+        <p class="slb">Our Space</p>
+        <h2 class="sti">프라이빗 독채 공간</h2>
+        <div class="dvd"></div>
+        <p>세 개의 독립 동으로 이루어진 복층 독채 펜션입니다. 각 동마다 독립적인 공간이 보장되어 타 투숙객과의 간섭 없이 프라이빗한 시간을 보내실 수 있습니다.</p>
+        <p>대형 야외 수영장, BBQ 테라스, 탁구장, 배드민턴 코트 등 다양한 부대시설이 갖추어져 있어 굳이 멀리 나가지 않아도 즐거운 시간을 보내실 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="map-section">
+  <div class="cn">
+    <div class="rv">
+      <p class="slb">Location</p>
+      <h2 class="sti">오시는 길</h2>
+      <div class="dvd"></div>
+    </div>
+    <div class="map-placeholder rv">
+      <div class="map-pin">📍</div>
+      <h3 id="t-mapname"></h3>
+      <p id="t-mapaddr"></p>
+    </div>
+    <div class="dir-grid rv">
+      <div class="dir-item"><h4>🚗 자가용</h4><p id="t-dir"></p></div>
+      <div class="dir-item"><h4>🚌 대중교통</h4><p>계룡역 하차 후 택시 약 10분</p></div>
+      <div class="dir-item"><h4>🌲 주변 명소</h4><p id="t-nb"></p></div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="../config.js"></script>
+<script src="../common.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  applyTheme(); renderNav(); renderFooter(); initReveal();
+  
+  const p=CONFIG.pension, c=CONFIG.contact;
+  document.getElementById("t-atit").innerHTML=p.intro_title;
+  document.getElementById("t-adesc").textContent=p.intro_desc;
+  document.getElementById("t-mapname").textContent=p.name_ko;
+  document.getElementById("t-mapaddr").innerHTML=c.address+"<br>"+c.address_detail;
+  document.getElementById("t-dir").innerHTML=c.directions;
+  document.getElementById("t-nb").innerHTML=c.nearby;
+
+});
+</script>
+</body>
+</html>

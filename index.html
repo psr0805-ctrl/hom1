@@ -5,134 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>펜션</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body>
+<nav id="nav"></nav>
+
 <style>
-/* ================================================================
-   디자인 CSS — 수정 불필요
-   ================================================================ */
-:root{--g:#2a5c45;--g2:#3d7a5e;--gl:#5aaa82;--gp:#e8f5ee;--y:#f0c040;--cr:#f9f7f2;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Noto Sans KR',sans-serif;color:#1c1c1c;overflow-x:hidden;}
-#nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid #e4e4e0;transition:box-shadow .3s;}
-#nav.sc{box-shadow:0 2px 20px rgba(0,0,0,.08);}
-.nlogo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--g);text-decoration:none;letter-spacing:.04em;}
-.nlogo small{display:block;font-family:'Noto Sans KR',sans-serif;font-size:.58rem;font-weight:400;color:#999;letter-spacing:.12em;margin-top:1px;}
-.nmenu{display:flex;list-style:none;}
-.nmenu a{display:block;padding:0 16px;font-size:.77rem;font-weight:500;color:#1c1c1c;text-decoration:none;line-height:64px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;letter-spacing:.05em;}
-.nmenu a:hover,.nmenu a.on{color:var(--g);border-color:var(--g);}
-.nrsv{background:var(--g);color:#fff;padding:9px 20px;font-size:.77rem;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:background .2s;}
-.nrsv:hover{background:var(--g2);}
-#hero{position:relative;height:100vh;min-height:560px;overflow:hidden;}
+#hero{position:relative;height:100vh;min-height:560px;overflow:hidden;margin-top:64px;}
 .hsl{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s;}
 .hsl.on{opacity:1;}
 .hov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.03),rgba(0,0,0,.58) 80%);}
 .hct{position:absolute;bottom:90px;left:60px;right:60px;z-index:2;animation:fu .9s ease .2s both;}
 .htag{display:inline-block;font-size:.67rem;font-weight:700;letter-spacing:.2em;padding:5px 13px;margin-bottom:16px;text-transform:uppercase;background:var(--y);color:#1c1c1c;}
-.hct h1{font-family:'Nanum Myeongjo',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px;}
+.hct h1{font-family:"Nanum Myeongjo",serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px;}
 .hct h1 em{font-style:italic;color:var(--y);}
 .hct p{font-size:.93rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.7;margin-bottom:26px;}
 .hbts{display:flex;gap:11px;}
 .hb1{background:var(--y);color:#1c1c1c;padding:12px 28px;font-size:.84rem;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:all .2s;}
 .hb1:hover{background:#e0b030;transform:translateY(-2px);}
-.hb2{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);padding:12px 28px;font-size:.84rem;font-weight:400;letter-spacing:.06em;text-decoration:none;transition:all .2s;}
+.hb2{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);padding:12px 28px;font-size:.84rem;font-weight:400;letter-spacing:.06em;text-decoration:none;}
 .hb2:hover{border-color:#fff;}
 .hdots{position:absolute;bottom:30px;left:60px;z-index:3;display:flex;gap:8px;}
 .dot{width:22px;height:3px;background:rgba(255,255,255,.3);cursor:pointer;transition:background .3s,width .3s;}
 .dot.on{background:#fff;width:40px;}
-.harr{position:absolute;top:50%;z-index:3;transform:translateY(-50%);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:background .2s;}
+.harr{position:absolute;top:50%;z-index:3;transform:translateY(-50%);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;}
 .harr:hover{background:rgba(255,255,255,.28);}
 .ha-p{left:18px;}.ha-n{right:18px;}
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-.sw{padding:88px 0;}
-.cn{max-width:1160px;margin:0 auto;padding:0 48px;}
-.slb{font-size:.67rem;font-weight:700;letter-spacing:.25em;color:var(--g);text-transform:uppercase;margin-bottom:9px;}
-.sti{font-family:'Nanum Myeongjo',serif;font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;line-height:1.25;margin-bottom:12px;}
-.sds{font-size:.89rem;line-height:1.9;color:#555;max-width:480px;}
-.dvd{width:34px;height:2px;background:var(--gl);margin:12px 0 24px;}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s;}
-.rv.on{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.12s;}.d2{transition-delay:.22s;}
+/* about */
 #about{background:var(--cr);}
 .abg{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
-.abib{position:relative;height:490px;}
+.abib{position:relative;height:480px;}
 .abi-a{position:absolute;right:0;top:0;width:78%;height:82%;object-fit:cover;}
 .abi-b{position:absolute;left:0;bottom:0;width:52%;height:46%;object-fit:cover;border:5px solid var(--cr);box-shadow:10px 10px 28px rgba(0,0,0,.12);}
-.abstamp{position:absolute;right:-14px;top:46%;transform:translateY(-50%);width:78px;height:78px;border-radius:50%;background:var(--y);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.57rem;font-weight:700;text-align:center;line-height:1.5;box-shadow:0 4px 16px rgba(240,192,64,.4);z-index:2;}
+.abstamp{position:absolute;right:-14px;top:46%;transform:translateY(-50%);width:78px;height:78px;border-radius:50%;background:var(--y);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.57rem;font-weight:700;text-align:center;line-height:1.5;z-index:2;}
 .abpts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:24px;}
 .abpt{background:#fff;padding:14px 15px;border-left:3px solid var(--gl);}
 .abpt strong{display:block;font-size:.81rem;font-weight:700;margin-bottom:2px;}
 .abpt span{font-size:.74rem;color:#666;}
-#rooms{background:#fff;}
-.rhd{text-align:center;margin-bottom:46px;}
-.rhd .sds{margin:0 auto;text-align:center;}
-.rhd .dvd{margin:12px auto 0;}
-.rtbs{display:flex;justify-content:center;border-bottom:2px solid #e4e4e0;margin-bottom:42px;}
-.rtb{padding:10px 28px;font-size:.79rem;font-weight:600;letter-spacing:.06em;color:#aaa;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s;}
-.rtb.on{color:var(--g);border-color:var(--g);}
-.rpl{display:none;}.rpl.on{display:block;}
-.rly{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:start;}
-.rsr{overflow:hidden;}
-.rss{display:flex;transition:transform .5s;}
-.rss img{width:100%;height:370px;object-fit:cover;flex-shrink:0;}
-.rths{display:flex;gap:5px;margin-top:5px;}
-.rth{flex:1;height:66px;object-fit:cover;cursor:pointer;opacity:.5;transition:opacity .2s;border:2px solid transparent;}
-.rth.on{opacity:1;border-color:var(--g);}
-.rno{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:600;color:var(--gp);line-height:1;margin-bottom:2px;}
-.rnm{font-family:'Nanum Myeongjo',serif;font-size:1.3rem;font-weight:700;margin-bottom:11px;}
-.rdc{font-size:.83rem;color:#555;line-height:1.85;margin-bottom:16px;}
-.ram{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
-.am{background:var(--gp);color:var(--g);font-size:.69rem;font-weight:600;padding:4px 10px;letter-spacing:.04em;}
-.rcp{display:flex;gap:22px;padding:15px 16px;background:var(--cr);border-left:3px solid var(--g);}
-.cpl{font-size:.65rem;color:#aaa;letter-spacing:.08em;margin-bottom:3px;}
-.cpv{font-size:.87rem;font-weight:700;}
-#facilities{background:var(--cr);}
-.fhd{display:grid;grid-template-columns:1fr 1fr;gap:62px;align-items:center;margin-bottom:54px;}
+/* room preview */
+#room-preview{background:#fff;}
+.rp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;}
+.rp-card{position:relative;overflow:hidden;aspect-ratio:4/3;text-decoration:none;display:block;}
+.rp-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.rp-card:hover img{transform:scale(1.05);}
+.rp-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px 18px;}
+.rp-no{font-family:"Cormorant Garamond",serif;font-size:2rem;font-weight:600;color:rgba(255,255,255,.4);line-height:1;}
+.rp-nm{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.rp-ds{font-size:.72rem;color:rgba(255,255,255,.7);}
+.rp-more{display:block;text-align:center;margin-top:28px;font-size:.8rem;font-weight:600;color:var(--g);text-decoration:none;letter-spacing:.08em;}
+.rp-more:hover{text-decoration:underline;}
+/* fac */
+#fac-home{background:var(--cr);}
+.fhd{display:grid;grid-template-columns:1fr 1fr;gap:62px;align-items:center;}
 .ffi{position:relative;}
-.ffi img{width:100%;height:410px;object-fit:cover;}
-.ffis{position:absolute;bottom:-18px;right:-18px;width:48%;height:155px;object-fit:cover;border:4px solid var(--cr);box-shadow:8px 8px 22px rgba(0,0,0,.13);}
+.ffi img{width:100%;height:400px;object-fit:cover;}
+.ffis{position:absolute;bottom:-18px;right:-18px;width:48%;height:150px;object-fit:cover;border:4px solid var(--cr);box-shadow:8px 8px 22px rgba(0,0,0,.13);}
 .fls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:24px;}
-.fli{display:flex;align-items:center;gap:9px;padding:10px 12px;background:#fff;font-size:.81rem;font-weight:500;transition:background .2s;}
-.fli:hover{background:var(--gp);}
-.fgr{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-.fcd{position:relative;overflow:hidden;aspect-ratio:4/3;}
-.fcd img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block;}
-.fcd:hover img{transform:scale(1.06);}
-.fov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;}
-.fnm{font-size:.93rem;font-weight:700;color:#fff;margin-bottom:3px;}
-.fsb{font-size:.72rem;color:rgba(255,255,255,.7);}
-.fibg{position:absolute;top:11px;left:11px;width:33px;height:33px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;font-size:.92rem;}
-.fcd{cursor:pointer;}
-.fcd-hint{position:absolute;top:11px;right:11px;background:rgba(255,255,255,.2);color:#fff;font-size:.62rem;font-weight:600;padding:3px 8px;letter-spacing:.06em;backdrop-filter:blur(4px);}
-#fac-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;}
-#fac-modal.on{display:flex;}
-.fm-wrap{background:#fff;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:fmIn .25s ease;}
-@keyframes fmIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-.fm-img{width:100%;height:260px;object-fit:cover;display:block;}
-.fm-body{padding:28px;}
-.fm-icon{font-size:1.6rem;margin-bottom:10px;}
-.fm-name{font-family:'Nanum Myeongjo',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px;}
-.fm-sub{font-size:.78rem;font-weight:600;color:var(--g);letter-spacing:.06em;margin-bottom:14px;}
-.fm-detail{font-size:.88rem;color:#555;line-height:1.85;}
-.fm-close{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.35);border:none;font-size:1.1rem;cursor:pointer;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-#spots{background:#fff;}
-.sgr{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px;}
-.scd{background:var(--cr);overflow:hidden;}
-.sim{width:100%;height:170px;background:#dceee4;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.sim img{width:100%;height:100%;object-fit:cover;}
-.sph{display:flex;flex-direction:column;align-items:center;gap:6px;color:#aaa;}
-.sph .ico{font-size:1.7rem;}
-.sph span{font-size:.68rem;letter-spacing:.06em;}
-.sbd{padding:14px 13px 18px;}
-.snm{font-size:.88rem;font-weight:700;margin-bottom:5px;}
-.sdt{display:inline-block;background:var(--gp);color:var(--g);font-size:.66rem;font-weight:700;padding:3px 8px;margin-bottom:7px;letter-spacing:.04em;}
-.sdc{font-size:.76rem;color:#555;line-height:1.6;}
-#contact{padding:88px 0;position:relative;overflow:hidden;}
-#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(90,170,130,.28),transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(20,60,40,.38),transparent 50%);}
-#contact .cn{position:relative;z-index:1;}
+.fli{display:flex;align-items:center;gap:9px;padding:10px 12px;background:#fff;font-size:.81rem;font-weight:500;}
+/* contact */
+#contact-home{padding:80px 0;position:relative;overflow:hidden;}
+#contact-home::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(90,170,130,.28),transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(20,60,40,.38),transparent 50%);}
+#contact-home .cn{position:relative;z-index:1;}
 .cgr{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;}
-.cti{font-family:'Nanum Myeongjo',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:#fff;margin-bottom:12px;}
+.cti{font-family:"Nanum Myeongjo",serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:#fff;margin-bottom:12px;}
 .cbt{display:flex;flex-direction:column;gap:9px;margin-top:22px;}
-.cb{display:flex;align-items:center;gap:11px;padding:13px 20px;font-size:.86rem;font-weight:700;text-decoration:none;letter-spacing:.04em;transition:all .2s;}
+.cb{display:flex;align-items:center;gap:11px;padding:13px 20px;font-size:.86rem;font-weight:700;text-decoration:none;transition:all .2s;}
 .cb:hover{transform:translateX(4px);}
 .cb-k{background:#FEE500;color:#3A1D1D;}
 .cb-t{background:#fff;}
@@ -143,37 +81,35 @@ body{font-family:'Noto Sans KR',sans-serif;color:#1c1c1c;overflow-x:hidden;}
 .cii-i{font-size:1rem;flex-shrink:0;margin-top:2px;}
 .cii h4{font-size:.79rem;font-weight:700;color:#fff;margin-bottom:3px;}
 .cii p{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.5;}
-footer{background:#111;padding:38px 0 20px;}
-.fin{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;margin-bottom:24px;}
-.flo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#fff;display:block;margin-bottom:8px;}
-.fcp{font-size:.72rem;color:#555;line-height:1.8;}
-.fnv{display:flex;gap:16px;flex-wrap:wrap;}
-.fnv a{font-size:.75rem;color:#555;text-decoration:none;transition:color .2s;}
-.fnv a:hover{color:var(--gl);}
-.fbt{border-top:1px solid #222;padding-top:16px;font-size:.69rem;color:#444;text-align:center;}
 @media(max-width:860px){
-  #nav{padding:0 18px;}.nmenu{display:none;}.cn{padding:0 18px;}.sw{padding:60px 0;}
   .abg,.fhd,.cgr{grid-template-columns:1fr;gap:28px;}
   .abib{height:250px;}.abstamp{display:none;}
-  .rly{grid-template-columns:1fr;gap:22px;}.rss img{height:240px;}
-  .fgr{grid-template-columns:1fr 1fr;}.sgr{grid-template-columns:1fr 1fr;}
+  .rp-grid{grid-template-columns:1fr 1fr;}
   .hct{left:20px;right:20px;bottom:68px;}.hdots{left:20px;}
 }
+/* 시설 모달 */
+#fac-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;}
+#fac-modal.on{display:flex;}
+.fm-wrap{background:#fff;max-width:520px;width:100%;position:relative;animation:fmIn .25s ease;}
+@keyframes fmIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.fm-img{width:100%;height:240px;object-fit:cover;display:block;}
+.fm-body{padding:24px 26px 28px;}
+.fm-icon{font-size:1.5rem;margin-bottom:8px;}
+.fm-name{font-family:"Nanum Myeongjo",serif;font-size:1.3rem;font-weight:800;margin-bottom:5px;}
+.fm-sub{font-size:.76rem;font-weight:600;color:var(--g);letter-spacing:.06em;margin-bottom:12px;}
+.fm-detail{font-size:.86rem;color:#555;line-height:1.85;}
+.fm-close{position:absolute;top:10px;right:12px;background:rgba(0,0,0,.35);border:none;font-size:1rem;cursor:pointer;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.fcd{cursor:pointer;}
+.fgr{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.fcd{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.fcd img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block;}
+.fcd:hover img{transform:scale(1.06);}
+.fov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;}
+.fnm{font-size:.93rem;font-weight:700;color:#fff;margin-bottom:3px;}
+.fsb{font-size:.72rem;color:rgba(255,255,255,.7);}
+.fibg{position:absolute;top:11px;left:11px;width:33px;height:33px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;font-size:.92rem;}
+.fcd-hint{position:absolute;top:11px;right:11px;background:rgba(255,255,255,.2);color:#fff;font-size:.62rem;font-weight:600;padding:3px 8px;backdrop-filter:blur(4px);}
 </style>
-</head>
-<body>
-
-<nav id="nav">
-  <a href="#" class="nlogo"><span id="t-en"></span><small id="t-ko"></small></a>
-  <ul class="nmenu">
-    <li><a href="#about">펜션소개</a></li>
-    <li><a href="#rooms">객실안내</a></li>
-    <li><a href="#facilities">부대시설</a></li>
-    <li><a href="#spots">주변관광</a></li>
-    <li><a href="#contact">예약/문의</a></li>
-  </ul>
-  <a href="#contact" class="nrsv">예약 문의</a>
-</nav>
 
 <section id="hero">
   <div id="hslides"></div>
@@ -183,8 +119,8 @@ footer{background:#111;padding:38px 0 20px;}
     <h1 id="t-h1"></h1>
     <p id="t-hsub"></p>
     <div class="hbts">
-      <a href="#contact" class="hb1">예약 문의하기</a>
-      <a href="#rooms" class="hb2">객실 둘러보기</a>
+      <a href="" class="hb1" id="t-rsv-btn">예약 문의하기</a>
+      <a href="" class="hb2" id="t-rooms-btn">객실 둘러보기</a>
     </div>
   </div>
   <button class="harr ha-p" onclick="hs(-1)">&#8592;</button>
@@ -196,8 +132,8 @@ footer{background:#111;padding:38px 0 20px;}
   <div class="cn">
     <div class="abg">
       <div class="abib rv">
-        <img class="abi-a" id="img-about-main" src="" alt="">
-        <img class="abi-b" id="img-about-sub" src="" alt="">
+        <img class="abi-a" id="img-am" src="" alt="">
+        <img class="abi-b" id="img-as" src="" alt="">
         <div class="abstamp">🌿<br>계룡산<br>자락</div>
       </div>
       <div class="rv d1">
@@ -205,36 +141,30 @@ footer{background:#111;padding:38px 0 20px;}
         <h2 class="sti" id="t-atit"></h2>
         <div class="dvd"></div>
         <p class="sds" id="t-adesc"></p>
-        <div class="abpts">
-          <div class="abpt"><strong>독채 복층</strong><span>3개 동 전 객실 복층 구조</span></div>
-          <div class="abpt"><strong>대형 수영장</strong><span>전용 야외 수영장 운영</span></div>
-          <div class="abpt"><strong>BBQ 테라스</strong><span>가스 그릴 완비 전용 공간</span></div>
-          <div class="abpt"><strong>계룡산 뷰</strong><span>국립공원 자락 청정 자연</span></div>
-        </div>
+        <div class="abpts" id="abpts"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sw" id="rooms" style="background:#fff">
+<section class="sw" id="room-preview">
   <div class="cn">
-    <div class="rhd rv">
+    <div class="rv" style="text-align:center">
       <p class="slb">Room Guide</p>
       <h2 class="sti">객실 안내</h2>
-      <div class="dvd"></div>
-      <p class="sds">전 객실 복층 독채 구조로 쾌적하고 프라이빗한 공간을 제공합니다</p>
+      <div class="dvd" style="margin:12px auto 0"></div>
     </div>
-    <div class="rtbs" id="rtbs"></div>
-    <div id="rpls"></div>
+    <div class="rp-grid rv" id="rp-grid"></div>
+    <a href="" class="rp-more" id="t-rooms-more">전체 객실 보기 →</a>
   </div>
 </section>
 
-<section class="sw" id="facilities" style="background:var(--cr)">
+<section class="sw" id="fac-home" style="background:var(--cr)">
   <div class="cn">
     <div class="fhd">
       <div class="ffi rv">
-        <img id="img-fac-main" src="" alt="">
-        <img class="ffis" id="img-fac-sub" src="" alt="">
+        <img id="img-fm" src="" alt="">
+        <img class="ffis" id="img-fs" src="" alt="">
       </div>
       <div class="rv d1">
         <p class="slb">Facilities</p>
@@ -248,23 +178,12 @@ footer{background:#111;padding:38px 0 20px;}
   </div>
 </section>
 
-<section class="sw" id="spots" style="background:#fff">
-  <div class="cn">
-    <div class="rv" style="text-align:center;margin-bottom:46px">
-      <p class="slb">Nearby Attractions</p>
-      <h2 class="sti">주변 추천 명소</h2>
-      <div class="dvd" style="margin:12px auto 0"></div>
-    </div>
-    <div class="sgr rv" id="sgr"></div>
-  </div>
-</section>
-
-<section id="contact">
+<section id="contact-home">
   <div class="cn">
     <div class="cgr">
       <div class="rv">
         <p class="slb" style="color:rgba(255,255,255,.5)">Reservation & Contact</p>
-        <h2 class="cti" id="t-ctit"></h2>
+        <h2 class="cti">올여름, 여기서<br>특별한 추억을</h2>
         <p style="font-size:.89rem;color:rgba(255,255,255,.7);line-height:1.85;font-weight:300">주말·성수기 예약은 빠르게 마감됩니다.<br>아래 채널로 편하게 문의해 주세요.</p>
         <div class="cbt">
           <a id="t-kakao" href="#" class="cb cb-k">💬 카카오톡 채널 문의</a>
@@ -282,7 +201,6 @@ footer{background:#111;padding:38px 0 20px;}
   </div>
 </section>
 
-
 <!-- 시설 모달 -->
 <div id="fac-modal" onclick="if(event.target===this)closeFacModal()">
   <div class="fm-wrap">
@@ -296,168 +214,40 @@ footer{background:#111;padding:38px 0 20px;}
     </div>
   </div>
 </div>
-<footer>
-  <div class="cn">
-    <div class="fin">
-      <div><span class="flo" id="t-flo"></span><p class="fcp" id="t-fcp"></p></div>
-      <nav class="fnv">
-        <a href="#about">펜션소개</a><a href="#rooms">객실안내</a>
-        <a href="#facilities">부대시설</a><a href="#spots">주변관광</a>
-        <a href="#contact">예약/문의</a>
-      </nav>
-    </div>
-    <div class="fbt" id="t-fbt"></div>
-  </div>
-</footer>
 
+
+<footer id="footer"></footer>
+<script src="config.js"></script>
+<script src="common.js"></script>
 <script>
-/* ================================================================
-   ✏️  수정 구역 — 새 펜션 수주 시 여기만 바꾸세요
-   ================================================================ */
-const C = {
-
-  /* 1. 펜션 기본 정보 */
-  pension: {
-    name_en:     'Freesia Pension',
-    name_ko:     '계룡산 라임휴 프리지아 펜션',
-    slogan:      '계룡산 자락 · 프라이빗 독채',
-    hero_h1:     '자연이 품은',
-    hero_em:     '특별한 하룻밤',
-    hero_sub:    '수영장, BBQ, 스파, 글램핑까지<br>가족과 함께하는 모든 순간을 담았습니다',
-    about_title: '일상의 쉼,<br>계룡산에서 찾다',
-    about_desc:  '충남 계룡산 자락에 자리한 라임휴 프리지아 펜션은 독채 복층 구조로 운영되는 프라이빗 펜션입니다. 세 개의 독립 동으로 이루어져 있으며, 대형 수영장·BBQ·스파 등 풍부한 부대시설을 갖추고 있습니다.',
-    cta_title:   '올여름, 라임휴에서<br>특별한 추억을',
-  },
-
-  /* 2. 연락처 */
-  contact: {
-    tel:            '010-0000-0000',
-    kakao_url:      '#',
-    naver_url:      '#',
-    address:        '충청남도 계룡시',
-    address_detail: '(정확한 주소는 예약 확인 후 안내)',
-    checkin:        '15:00',
-    checkout:       '11:00',
-    directions:     '대전 도심 약 30분 · 공주 약 25분<br>계룡역 하차 후 택시 약 10분',
-    nearby:         '갑사 · 동학사 · 공주 공산성<br>계룡산 국립공원',
-  },
-
-  /* 3. 사업자 정보 */
-  biz: { reg_no: '000-00-00000', ceo: '000', year: '2025' },
-
-  /* 4. 색상 테마 */
-  theme: {
-    g: '#2a5c45', g2: '#3d7a5e', gl: '#5aaa82',
-    gp: '#e8f5ee', y: '#f0c040', cr: '#f9f7f2',
-  },
-
-  /* 5. 이미지 경로 — images/ 폴더 안 파일명만 바꾸면 됨 */
-  images: {
-    hero:       ['images/main/main_01.jpg','images/main/main_02.jpg','images/room102/102_01.jpg','images/room201/201_01.jpg'],
-    about_main: 'images/main/main_01.jpg',
-    about_sub:  'images/main/main_02.jpg',
-    fac_main:   'images/main/main_02.jpg',
-    fac_sub:    'images/main/main_01.jpg',
-    fac_cards:  ['images/main/main_02.jpg','images/room102/102_05.jpg','images/room102/102_10.jpg'],
-    rooms: [
-      ['images/room101/101_01.jpg','images/room101/101_02.jpg','images/room101/101_03.jpg'],
-      ['images/room102/102_01.jpg','images/room102/102_02.jpg','images/room102/102_03.jpg','images/room102/102_04.jpg','images/room102/102_05.jpg','images/room102/102_06.jpg','images/room102/102_07.jpg','images/room102/102_08.jpg','images/room102/102_09.jpg','images/room102/102_10.jpg','images/room102/102_11.jpg','images/room102/102_12.jpg','images/room102/102_13.jpg'],
-      ['images/room201/201_01.jpg','images/room201/201_02.jpg','images/room201/201_03.jpg','images/room201/201_04.jpg','images/room201/201_05.jpg'],
-    ],
-    spots: ['','','',''],  // 주변관광 이미지 (없으면 빈 문자열)
-  },
-
-  /* 6. 객실 정보 */
-  rooms: [
-    { no:'101', name:'프리지아 A동', tab:'101호 · A동',
-      desc:'복층 구조로 1층에 거실·주방·화장실·테라스, 2층에 침대방 2개·화장실·루프 테라스. 2층 테라스에서 계룡산 전망을 감상할 수 있습니다.',
-      amenities:['복층','테라스','계룡산 전망','주방','화장실 2개','침대방 2개'], std:'2~4인', max:'6인' },
-    { no:'102', name:'프리지아 B동', tab:'102호 · B동',
-      desc:'세련된 나선형 실내계단이 인상적인 복층 독채. 1층 거실·주방·데크, 2층 침대·펀백스파·배란다. 창밖 계룡산 뷰 스파.',
-      amenities:['복층','나선형 계단','펀백 스파','배란다','데크','주방'], std:'2~3인', max:'4인' },
-    { no:'201', name:'프리지아 C동', tab:'201호 · C동',
-      desc:'옥상 글램핑 텐트가 있는 이색 복층 독채. 1층 거실·주방·화장실, 2층 침대방·옥상 스파·글램핑 텐트.',
-      amenities:['복층','옥상 스파','글램핑 텐트','주방','전망 테라스'], std:'2~4인', max:'6인' },
-  ],
-
-  /* 7. 부대시설 (detail: 카드 클릭시 팝업 상세설명) */
-  facilities: [
-    { icon:'🏊', name:'대형 수영장', sub:'여름 성수기 운영 · 차양막 & 테이블 완비',
-      detail:'성인도 충분히 즐길 수 있는 대형 야외 수영장입니다. 차양막과 야외 테이블·의자가 완비되어 있으며 여름 성수기(6~8월) 운영합니다. 수영복과 물놀이 용품은 개별 지참해 주세요.' },
-    { icon:'🔥', name:'BBQ 테라스', sub:'가스 그릴 · 야외 피크닉 테이블',
-      detail:'가스 그릴과 야외 피크닉 테이블이 완비된 전용 BBQ 공간입니다. 식재료는 별도 준비하셔야 하며, 그릴과 기본 집기는 무료 이용 가능합니다. 숯불이 아닌 가스 방식으로 편리하게 이용하실 수 있습니다.' },
-    { icon:'⛺', name:'루프탑 글램핑', sub:'201호 전용 · 옥상 캠핑 텐트',
-      detail:'201호 전용 옥상에 설치된 글램핑 텐트입니다. 밤하늘 아래 캠핑 감성을 즐기실 수 있으며, 캠핑 의자와 테이블이 함께 제공됩니다. 201호 투숙 고객에 한해 이용 가능합니다.' },
-  ],
-  fac_list: [
-    {icon:'🏊',text:'대형 야외 수영장'}, {icon:'🔥',text:'BBQ 테라스 & 그릴'},
-    {icon:'🏓',text:'야외 탁구 테이블'}, {icon:'🏸',text:'배드민턴 코트'},
-    {icon:'🪑',text:'정원 그네 쉼터'},  {icon:'🍽️',text:'공용 다이닝 라운지'},
-  ],
-
-  /* 8. 주변관광 */
-  spots: [
-    { icon:'🌲', name:'갑사',            dist:'차량 10분', desc:'계룡산 서쪽 기슭의 천년 고찰. 단풍 명소로 유명하며 사계절 아름다운 산사 풍경을 자랑합니다.' },
-    { icon:'⛩️', name:'동학사',          dist:'차량 15분', desc:'계룡산 동쪽 대표 사찰. 봄 벚꽃 터널과 여름 계곡 트레킹 코스로 인기입니다.' },
-    { icon:'🏰', name:'공주 공산성',     dist:'차량 25분', desc:'백제 웅진 시대 왕성. 금강 조망 성벽 산책로와 야경이 아름다운 유네스코 세계문화유산.' },
-    { icon:'⛰️', name:'계룡산 국립공원', dist:'도보 가능', desc:'삼불봉·관음봉 등 다양한 등산 코스와 맑은 계곡이 가족 나들이에 안성맞춤.' },
-  ],
-};
-/* ================================================================
-   ✏️  수정 구역 끝
-   ================================================================ */
-
-
-// ── 렌더링 (수정 불필요)
-// 깃허브 Pages 레포명 자동 감지 (로컬/배포 둘 다 작동)
-const BASE = location.hostname === 'localhost' || location.protocol === 'file:'
-  ? ''
-  : '/' + (location.pathname.split('/').filter(Boolean)[0] || '');
-
-function prefixImg(src){
-  if(!src) return '';
-  return BASE + '/' + src.replace(/^\//,'');
-}
-
-function applyTheme(t){
-  const r=document.documentElement.style;
-  r.setProperty('--g',t.g); r.setProperty('--g2',t.g2); r.setProperty('--gl',t.gl);
-  r.setProperty('--gp',t.gp); r.setProperty('--y',t.y); r.setProperty('--cr',t.cr);
-}
-
-function render(){
-  const p=C.pension, ct=C.contact, b=C.biz, im=C.images;
-  document.title=p.name_ko;
-  document.getElementById('t-en').textContent=p.name_en;
-  document.getElementById('t-ko').textContent=p.name_ko;
-  document.getElementById('t-slogan').textContent=p.slogan;
-  document.getElementById('t-h1').innerHTML=p.hero_h1+'<br><em>'+p.hero_em+'</em>';
-  document.getElementById('t-hsub').innerHTML=p.hero_sub;
-  document.getElementById('t-atit').innerHTML=p.about_title;
-  document.getElementById('t-adesc').textContent=p.about_desc;
-  document.getElementById('img-about-main').src=prefixImg(im.about_main);
-  document.getElementById('img-about-sub').src=prefixImg(im.about_sub);
-  document.getElementById('img-fac-main').src=prefixImg(im.fac_main);
-  document.getElementById('img-fac-sub').src=prefixImg(im.fac_sub);
-  document.getElementById('t-kakao').href=ct.kakao_url;
-  document.getElementById('t-naver').href=ct.naver_url;
-  document.getElementById('t-tel').href='tel:'+ct.tel;
-  document.getElementById('t-tel').textContent='📞 전화 예약 · '+ct.tel;
-  document.getElementById('t-addr').innerHTML=ct.address+'<br>'+ct.address_detail;
-  document.getElementById('t-ci').textContent='체크인 '+ct.checkin+' · 체크아웃 '+ct.checkout;
-  document.getElementById('t-dir').innerHTML=ct.directions;
-  document.getElementById('t-nb').innerHTML=ct.nearby;
-  document.getElementById('t-ctit').innerHTML=p.cta_title;
-  document.getElementById('t-flo').textContent=p.name_en;
-  document.getElementById('t-fcp').innerHTML=p.name_ko+' · '+ct.address+'<br>사업자등록번호: '+b.reg_no+' | 대표: '+b.ceo;
-  document.getElementById('t-fbt').textContent='ⓒ '+b.year+' '+p.name_ko+'. All rights reserved.';
+window.addEventListener('DOMContentLoaded', () => {
+  applyTheme();
+  renderNav();
+  renderFooter();
+  initReveal();
+});
+</script>
+</body>
+</html>
+<script>
+function renderIndex(){
+  const p=CONFIG.pension, c=CONFIG.contact, im=CONFIG.images;
+  document.title = p.name_ko;
 
   // 히어로
+  document.getElementById('t-slogan').textContent = p.slogan;
+  document.getElementById('t-h1').innerHTML = p.hero_h1 + '<br><em>' + p.hero_em + '</em>';
+  document.getElementById('t-hsub').innerHTML = p.hero_sub;
+  document.getElementById('t-rsv-btn').href = href('pages/reservation.html');
+  document.getElementById('t-rooms-btn').href = href('pages/rooms.html');
+  document.getElementById('t-rooms-more').href = href('pages/rooms.html');
+
+  // 히어로 슬라이더
   const hs=document.getElementById('hslides'), hd=document.getElementById('hdots');
   im.hero.forEach((src,i)=>{
     const s=document.createElement('div');
     s.className='hsl'+(i===0?' on':'');
-    s.style.backgroundImage='url('+prefixImg(src)+')';
+    s.style.backgroundImage='url('+img(src)+')';
     hs.appendChild(s);
     const d=document.createElement('div');
     d.className='dot'+(i===0?' on':'');
@@ -465,71 +255,63 @@ function render(){
     hd.appendChild(d);
   });
 
-  // 시설 목록
+  // 소개
+  document.getElementById('t-atit').innerHTML = p.intro_title;
+  document.getElementById('t-adesc').textContent = p.intro_desc;
+  document.getElementById('img-am').src = img(im.about_main);
+  document.getElementById('img-as').src = img(im.about_sub);
+  const abpts = document.getElementById('abpts');
+  p.about_points.forEach(pt=>{
+    const el=document.createElement('div');
+    el.className='abpt';
+    el.innerHTML='<strong>'+pt.title+'</strong><span>'+pt.desc+'</span>';
+    abpts.appendChild(el);
+  });
+
+  // 객실 프리뷰
+  const rpg = document.getElementById('rp-grid');
+  CONFIG.rooms.forEach((r,ri)=>{
+    const el=document.createElement('a');
+    el.className='rp-card';
+    el.href=href('pages/room-'+r.no+'.html');
+    const firstImg = (im.rooms[ri]||[])[0]||'';
+    el.innerHTML='<img src="'+img(firstImg)+'" alt="'+r.name+'"><div class="rp-ov"><div class="rp-no">'+r.no+'</div><div class="rp-nm">'+r.name+'</div><div class="rp-ds">'+r.std+' · 최대'+r.max+'</div></div>';
+    rpg.appendChild(el);
+  });
+
+  // 시설
+  document.getElementById('img-fm').src = img(im.fac_main);
+  document.getElementById('img-fs').src = img(im.fac_sub);
   const fl=document.getElementById('fls');
-  C.fac_list.forEach(f=>{
+  CONFIG.fac_list.forEach(f=>{
     const el=document.createElement('div');
     el.className='fli';
     el.innerHTML='<span>'+f.icon+'</span>'+f.text;
     fl.appendChild(el);
   });
-
-  // 시설 카드
   const fg=document.getElementById('fgr');
-  C.facilities.forEach((f,i)=>{
+  CONFIG.facilities.forEach((f,i)=>{
     const el=document.createElement('div');
     el.className='fcd';
-    el.onclick=()=>openFacModal(f,prefixImg(im.fac_cards[i]||''));
-    el.innerHTML='<img src="'+prefixImg(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div><div class="fcd-hint">자세히 보기</div>';
+    el.onclick=()=>openFacModal(f, img(im.fac_cards[i]||''));
+    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div><div class="fcd-hint">자세히</div>';
     fg.appendChild(el);
   });
 
-  // 객실 탭
-  const rtbs=document.getElementById('rtbs'), rpls=document.getElementById('rpls');
-  C.rooms.forEach((r,ri)=>{
-    const t=document.createElement('div');
-    t.className='rtb'+(ri===0?' on':'');
-    t.textContent=r.tab;
-    t.onclick=()=>switchR(ri);
-    rtbs.appendChild(t);
-    const panel=document.createElement('div');
-    panel.className='rpl'+(ri===0?' on':'');
-    panel.id='rp'+ri;
-    const sls=im.rooms[ri]||[];
-    panel.innerHTML=
-      '<div class="rly"><div class="rsr"><div class="rss" id="rs'+ri+'">'+
-      sls.map(s=>'<div style="flex-shrink:0;width:100%"><img src="'+prefixImg(s)+'" alt="'+r.name+'"></div>').join('')+
-      '</div><div class="rths">'+
-      sls.map((s,ii)=>'<img class="rth'+(ii===0?' on':'')+'" src="'+prefixImg(s)+'" onclick="roomSl('+ri+','+ii+',this)">').join('')+
-      '</div></div>'+
-      '<div><div class="rno">'+r.no+'</div><div class="rnm">'+r.name+'</div>'+
-      '<p class="rdc">'+r.desc+'</p>'+
-      '<div class="ram">'+r.amenities.map(a=>'<span class="am">'+a+'</span>').join('')+'</div>'+
-      '<div class="rcp">'+
-      '<div><div class="cpl">기준 인원</div><div class="cpv">'+r.std+'</div></div>'+
-      '<div><div class="cpl">최대 인원</div><div class="cpv">'+r.max+'</div></div>'+
-      '<div><div class="cpl">구조</div><div class="cpv">복층 독채</div></div>'+
-      '</div></div></div>';
-    rpls.appendChild(panel);
-  });
-
-  // 관광지
-  const sg=document.getElementById('sgr');
-  C.spots.forEach((s,i)=>{
-    const el=document.createElement('div');
-    el.className='scd';
-    const imgH=im.spots[i]
-      ? '<img src="'+prefixImg(im.spots[i])+'" alt="'+s.name+'">'
-      : '<div class="sph"><span class="ico">'+s.icon+'</span><span>이미지 교체</span></div>';
-    el.innerHTML='<div class="sim">'+imgH+'</div><div class="sbd"><div class="snm">'+s.name+'</div><span class="sdt">'+s.dist+'</span><p class="sdc">'+s.desc+'</p></div>';
-    sg.appendChild(el);
-  });
+  // 연락처
+  document.getElementById('t-kakao').href = c.kakao_url;
+  document.getElementById('t-naver').href = c.naver_url;
+  document.getElementById('t-tel').href = 'tel:'+c.tel;
+  document.getElementById('t-tel').textContent = '📞 전화 예약 · '+c.tel;
+  document.getElementById('t-addr').innerHTML = c.address+'<br>'+c.address_detail;
+  document.getElementById('t-ci').textContent = '체크인 '+c.checkin+' · 체크아웃 '+c.checkout;
+  document.getElementById('t-dir').innerHTML = c.directions;
+  document.getElementById('t-nb').innerHTML = c.nearby;
 
   // contact 배경
-  document.getElementById('contact').style.background=C.theme.g;
+  document.getElementById('contact-home').style.background = CONFIG.theme.g;
 }
 
-// 히어로 슬라이더
 let hcur=0, htmr;
 function goH(n){
   const sl=document.querySelectorAll('.hsl'), dt=document.querySelectorAll('.dot');
@@ -540,52 +322,24 @@ function goH(n){
 }
 function hs(d){goH(hcur+d);}
 
-// 객실
-function switchR(i){
-  document.querySelectorAll('.rpl').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.rtb').forEach(t=>t.classList.remove('on'));
-  document.getElementById('rp'+i).classList.add('on');
-  document.querySelectorAll('.rtb')[i].classList.add('on');
-}
-function roomSl(ri,ii,el){
-  document.getElementById('rs'+ri).style.transform='translateX(-'+(ii*100)+'%)';
-  el.parentElement.querySelectorAll('.rth').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on');
-}
-
-// 시설 모달
 function openFacModal(f, imgSrc){
-  document.getElementById('fm-img').src = imgSrc;
-  document.getElementById('fm-icon').textContent = f.icon;
-  document.getElementById('fm-name').textContent = f.name;
-  document.getElementById('fm-sub').textContent = f.sub;
-  document.getElementById('fm-detail').textContent = f.detail || '';
+  document.getElementById('fm-img').src=imgSrc;
+  document.getElementById('fm-icon').textContent=f.icon;
+  document.getElementById('fm-name').textContent=f.name;
+  document.getElementById('fm-sub').textContent=f.sub;
+  document.getElementById('fm-detail').textContent=f.detail||'';
   document.getElementById('fac-modal').classList.add('on');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 function closeFacModal(){
   document.getElementById('fac-modal').classList.remove('on');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeFacModal(); });
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFacModal();});
 
-// 스크롤
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.1});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{
-  nav.classList.toggle('sc',scrollY>40);
-  let cur='';
-  document.querySelectorAll('section[id]').forEach(s=>{if(scrollY>=s.offsetTop-80)cur=s.id;});
-  document.querySelectorAll('.nmenu a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
-});
-
-// 초기화
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(C.theme);
-  render();
+  applyTheme(); renderNav(); renderFooter(); initReveal();
+  renderIndex();
   htmr=setInterval(()=>goH(hcur+1),4500);
 });
 </script>
-</body>
-</html>

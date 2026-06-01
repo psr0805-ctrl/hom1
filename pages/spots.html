@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주변관광</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../common.css">
+</head>
+<body>
+<nav id="nav"></nav>
+
+<style>
+.spots-full{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:44px;}
+.spc{display:grid;grid-template-columns:200px 1fr;overflow:hidden;background:#fff;border:1px solid #f0f0f0;}
+.spc-img{width:200px;height:160px;object-fit:cover;}
+.spc-ph{width:200px;height:160px;background:#dceee4;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:#aaa;font-size:.7rem;}
+.spc-ph .ico{font-size:2rem;}
+.spc-body{padding:18px 20px;}
+.spc-name{font-family:"Nanum Myeongjo",serif;font-size:1.1rem;font-weight:800;margin-bottom:6px;}
+.spc-dist{display:inline-block;background:var(--gp);color:var(--g);font-size:.68rem;font-weight:700;padding:3px 9px;margin-bottom:8px;letter-spacing:.04em;}
+.spc-desc{font-size:.82rem;color:#555;line-height:1.75;}
+@media(max-width:860px){.spots-full{grid-template-columns:1fr;}.spc{grid-template-columns:1fr;}.spc-img,.spc-ph{width:100%;height:180px;}}
+</style>
+<div class="page-hero" style="background-image:url('../images/main/main_01.jpg')">
+  <div class="page-hero-content">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> · 주변관광</div>
+    <h1 class="page-title">주변 추천 명소</h1>
+  </div>
+</div>
+<section class="sw">
+  <div class="cn">
+    <div class="rv">
+      <p class="slb">Nearby Attractions</p>
+      <h2 class="sti">계룡산 주변 명소</h2>
+      <div class="dvd"></div>
+      <p class="sds">계룡산 국립공원을 중심으로 역사와 자연이 어우러진 명소들이 30분 이내에 있습니다.</p>
+    </div>
+    <div class="spots-full" id="spots-full"></div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="../config.js"></script>
+<script src="../common.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  applyTheme(); renderNav(); renderFooter(); initReveal();
+  
+  const sf = document.getElementById("spots-full");
+  const im = CONFIG.images;
+  CONFIG.spots.forEach((s,i)=>{
+    const el=document.createElement("div");
+    el.className="spc rv";
+    const imgH = im.spots[i]
+      ? "<img class=\"spc-img\" src=\""+img(im.spots[i])+"\" alt=\""+s.name+"\">"
+      : "<div class=\"spc-ph\"><span class=\"ico\">"+s.icon+"</span><span>이미지 교체</span></div>";
+    el.innerHTML=imgH+"<div class=\"spc-body\"><div class=\"spc-name\">"+s.name+"</div>"+
+      "<span class=\"spc-dist\">"+s.dist+"</span><p class=\"spc-desc\">"+s.desc+"</p></div>";
+    sf.appendChild(el);
+  });
+
+});
+</script>
+</body>
+</html>

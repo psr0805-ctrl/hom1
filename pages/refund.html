@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>환불규정</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../common.css">
+</head>
+<body>
+<nav id="nav"></nav>
+
+<style>
+.info-layout{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:start;}
+.info-sidebar{position:sticky;top:96px;background:#fff;border:1px solid #e4e4e0;}
+.info-sidebar a{display:block;padding:13px 20px;font-size:.8rem;color:#555;text-decoration:none;border-left:3px solid transparent;transition:all .2s;border-bottom:1px solid #f5f5f5;}
+.info-sidebar a:last-child{border-bottom:none;}
+.info-sidebar a:hover,.info-sidebar a.on{color:var(--g);border-color:var(--g);background:var(--gp);}
+.info-content{min-height:400px;}
+.info-content h3{font-family:"Nanum Myeongjo",serif;font-size:1.25rem;font-weight:800;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--g);}
+.info-content p,.info-content li{font-size:.87rem;color:#444;line-height:1.9;}
+.info-content ul{padding-left:18px;margin-top:10px;}
+.info-content li{margin-bottom:6px;}
+.price-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:.82rem;}
+.price-table th{background:var(--g);color:#fff;padding:11px 14px;text-align:center;font-weight:600;letter-spacing:.04em;}
+.price-table td{padding:11px 14px;text-align:center;border-bottom:1px solid #e4e4e0;color:#444;}
+.price-table tr:nth-child(even) td{background:#fafafa;}
+.price-table .room-name{text-align:left;font-weight:600;color:#1c1c1c;}
+.refund-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:.83rem;}
+.refund-table th{background:#333;color:#fff;padding:10px 14px;text-align:center;font-weight:600;}
+.refund-table td{padding:11px 14px;text-align:center;border-bottom:1px solid #e4e4e0;}
+.refund-table .warn{color:#e03030;font-weight:600;}
+.refund-table tr:nth-child(even) td{background:#fafafa;}
+.notice-block{background:var(--cr);border-left:3px solid var(--gl);padding:16px 18px;margin-bottom:14px;}
+.notice-block h4{font-size:.82rem;font-weight:700;margin-bottom:8px;color:var(--g);}
+@media(max-width:860px){.info-layout{grid-template-columns:1fr;}.info-sidebar{position:static;}}
+</style>
+
+<div class="page-hero" style="background-image:url('../images/main/main_01.jpg')">
+  <div class="page-hero-content">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> · 예약/문의</div>
+    <h1 class="page-title">환불 규정</h1>
+  </div>
+</div>
+<div class="sub-tabs">
+  <div class="sub-tabs-inner">
+    <a class="sub-tab" href="reservation.html">예약안내</a>
+    <a class="sub-tab on" href="refund.html">환불규정</a>
+    <a class="sub-tab" href="notice.html">이용안내</a>
+  </div>
+</div>
+<section class="sw">
+  <div class="cn">
+    <div class="info-layout">
+      <div class="info-sidebar">
+        <a href="reservation.html">예약안내</a>
+        <a href="refund.html" class="on">환불규정</a>
+        <a href="notice.html">이용안내</a>
+      </div>
+      <div class="info-content rv">
+        <h3>취소 및 환불 규정</h3>
+        <p style="margin-bottom:16px">예약 취소 시 아래 규정에 따라 환불이 진행됩니다. 성수기 및 특별 기간에는 별도 규정이 적용될 수 있습니다.</p>
+        <table class="refund-table" id="refund-table"></table>
+        <div style="margin-top:28px;background:#fff8f0;border-left:3px solid #e08030;padding:16px 18px;">
+          <h4 style="font-size:.82rem;font-weight:700;color:#c06010;margin-bottom:8px;">⚠️ 주의사항</h4>
+          <ul><li>환불은 입금 계좌로 진행되며 영업일 기준 3~5일 소요됩니다.</li><li>천재지변 등 불가항력적인 사유의 경우 별도 협의합니다.</li><li>노쇼(No-show)의 경우 환불이 불가합니다.</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="../config.js"></script>
+<script src="../common.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  applyTheme(); renderNav(); renderFooter(); initReveal();
+  
+  const rt = document.getElementById("refund-table");
+  let html = "<tr><th>취소 시점</th><th>환불 금액</th></tr>";
+  CONFIG.reservation.refund.forEach(r=>{
+    const warn = r.amount.includes("불가") ? " class=\"warn\"" : "";
+    html += "<tr><td>"+r.when+"</td><td"+warn+">"+r.amount+"</td></tr>";
+  });
+  rt.innerHTML = html;
+
+});
+</script>
+</body>
+</html>
