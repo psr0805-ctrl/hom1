@@ -101,6 +101,19 @@ body{font-family:'Noto Sans KR',sans-serif;color:#1c1c1c;overflow-x:hidden;}
 .fnm{font-size:.93rem;font-weight:700;color:#fff;margin-bottom:3px;}
 .fsb{font-size:.72rem;color:rgba(255,255,255,.7);}
 .fibg{position:absolute;top:11px;left:11px;width:33px;height:33px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;font-size:.92rem;}
+.fcd{cursor:pointer;}
+.fcd-hint{position:absolute;top:11px;right:11px;background:rgba(255,255,255,.2);color:#fff;font-size:.62rem;font-weight:600;padding:3px 8px;letter-spacing:.06em;backdrop-filter:blur(4px);}
+#fac-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;}
+#fac-modal.on{display:flex;}
+.fm-wrap{background:#fff;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:fmIn .25s ease;}
+@keyframes fmIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.fm-img{width:100%;height:260px;object-fit:cover;display:block;}
+.fm-body{padding:28px;}
+.fm-icon{font-size:1.6rem;margin-bottom:10px;}
+.fm-name{font-family:'Nanum Myeongjo',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px;}
+.fm-sub{font-size:.78rem;font-weight:600;color:var(--g);letter-spacing:.06em;margin-bottom:14px;}
+.fm-detail{font-size:.88rem;color:#555;line-height:1.85;}
+.fm-close{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.35);border:none;font-size:1.1rem;cursor:pointer;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 #spots{background:#fff;}
 .sgr{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px;}
 .scd{background:var(--cr);overflow:hidden;}
@@ -269,6 +282,20 @@ footer{background:#111;padding:38px 0 20px;}
   </div>
 </section>
 
+
+<!-- 시설 모달 -->
+<div id="fac-modal" onclick="if(event.target===this)closeFacModal()">
+  <div class="fm-wrap">
+    <button class="fm-close" onclick="closeFacModal()">✕</button>
+    <img class="fm-img" id="fm-img" src="" alt="">
+    <div class="fm-body">
+      <div class="fm-icon" id="fm-icon"></div>
+      <div class="fm-name" id="fm-name"></div>
+      <div class="fm-sub" id="fm-sub"></div>
+      <p class="fm-detail" id="fm-detail"></p>
+    </div>
+  </div>
+</div>
 <footer>
   <div class="cn">
     <div class="fin">
@@ -353,11 +380,14 @@ const C = {
       amenities:['복층','옥상 스파','글램핑 텐트','주방','전망 테라스'], std:'2~4인', max:'6인' },
   ],
 
-  /* 7. 부대시설 */
+  /* 7. 부대시설 (detail: 카드 클릭시 팝업 상세설명) */
   facilities: [
-    { icon:'🏊', name:'대형 수영장',  sub:'여름 성수기 운영 · 차양막 & 테이블 완비' },
-    { icon:'🔥', name:'BBQ 테라스',   sub:'가스 그릴 · 야외 피크닉 테이블' },
-    { icon:'⛺', name:'루프탑 글램핑', sub:'201호 전용 · 옥상 캠핑 텐트' },
+    { icon:'🏊', name:'대형 수영장', sub:'여름 성수기 운영 · 차양막 & 테이블 완비',
+      detail:'성인도 충분히 즐길 수 있는 대형 야외 수영장입니다. 차양막과 야외 테이블·의자가 완비되어 있으며 여름 성수기(6~8월) 운영합니다. 수영복과 물놀이 용품은 개별 지참해 주세요.' },
+    { icon:'🔥', name:'BBQ 테라스', sub:'가스 그릴 · 야외 피크닉 테이블',
+      detail:'가스 그릴과 야외 피크닉 테이블이 완비된 전용 BBQ 공간입니다. 식재료는 별도 준비하셔야 하며, 그릴과 기본 집기는 무료 이용 가능합니다. 숯불이 아닌 가스 방식으로 편리하게 이용하실 수 있습니다.' },
+    { icon:'⛺', name:'루프탑 글램핑', sub:'201호 전용 · 옥상 캠핑 텐트',
+      detail:'201호 전용 옥상에 설치된 글램핑 텐트입니다. 밤하늘 아래 캠핑 감성을 즐기실 수 있으며, 캠핑 의자와 테이블이 함께 제공됩니다. 201호 투숙 고객에 한해 이용 가능합니다.' },
   ],
   fac_list: [
     {icon:'🏊',text:'대형 야외 수영장'}, {icon:'🔥',text:'BBQ 테라스 & 그릴'},
@@ -449,7 +479,8 @@ function render(){
   C.facilities.forEach((f,i)=>{
     const el=document.createElement('div');
     el.className='fcd';
-    el.innerHTML='<img src="'+prefixImg(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div>';
+    el.onclick=()=>openFacModal(f,prefixImg(im.fac_cards[i]||''));
+    el.innerHTML='<img src="'+prefixImg(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div><div class="fcd-hint">자세히 보기</div>';
     fg.appendChild(el);
   });
 
@@ -521,6 +552,22 @@ function roomSl(ri,ii,el){
   el.parentElement.querySelectorAll('.rth').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
 }
+
+// 시설 모달
+function openFacModal(f, imgSrc){
+  document.getElementById('fm-img').src = imgSrc;
+  document.getElementById('fm-icon').textContent = f.icon;
+  document.getElementById('fm-name').textContent = f.name;
+  document.getElementById('fm-sub').textContent = f.sub;
+  document.getElementById('fm-detail').textContent = f.detail || '';
+  document.getElementById('fac-modal').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeFacModal(){
+  document.getElementById('fac-modal').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeFacModal(); });
 
 // 스크롤
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.1});
