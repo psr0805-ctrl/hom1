@@ -379,6 +379,16 @@ const C = {
 
 
 // ── 렌더링 (수정 불필요)
+// 깃허브 Pages 레포명 자동 감지 (로컬/배포 둘 다 작동)
+const BASE = location.hostname === 'localhost' || location.protocol === 'file:'
+  ? ''
+  : '/' + (location.pathname.split('/').filter(Boolean)[0] || '');
+
+function prefixImg(src){
+  if(!src) return '';
+  return BASE + '/' + src.replace(/^\//,'');
+}
+
 function applyTheme(t){
   const r=document.documentElement.style;
   r.setProperty('--g',t.g); r.setProperty('--g2',t.g2); r.setProperty('--gl',t.gl);
@@ -395,10 +405,10 @@ function render(){
   document.getElementById('t-hsub').innerHTML=p.hero_sub;
   document.getElementById('t-atit').innerHTML=p.about_title;
   document.getElementById('t-adesc').textContent=p.about_desc;
-  document.getElementById('img-about-main').src=im.about_main;
-  document.getElementById('img-about-sub').src=im.about_sub;
-  document.getElementById('img-fac-main').src=im.fac_main;
-  document.getElementById('img-fac-sub').src=im.fac_sub;
+  document.getElementById('img-about-main').src=prefixImg(im.about_main);
+  document.getElementById('img-about-sub').src=prefixImg(im.about_sub);
+  document.getElementById('img-fac-main').src=prefixImg(im.fac_main);
+  document.getElementById('img-fac-sub').src=prefixImg(im.fac_sub);
   document.getElementById('t-kakao').href=ct.kakao_url;
   document.getElementById('t-naver').href=ct.naver_url;
   document.getElementById('t-tel').href='tel:'+ct.tel;
@@ -417,7 +427,7 @@ function render(){
   im.hero.forEach((src,i)=>{
     const s=document.createElement('div');
     s.className='hsl'+(i===0?' on':'');
-    s.style.backgroundImage='url('+src+')';
+    s.style.backgroundImage='url('+prefixImg(src)+')';
     hs.appendChild(s);
     const d=document.createElement('div');
     d.className='dot'+(i===0?' on':'');
@@ -439,7 +449,7 @@ function render(){
   C.facilities.forEach((f,i)=>{
     const el=document.createElement('div');
     el.className='fcd';
-    el.innerHTML='<img src="'+(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div>';
+    el.innerHTML='<img src="'+prefixImg(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div>';
     fg.appendChild(el);
   });
 
@@ -457,9 +467,9 @@ function render(){
     const sls=im.rooms[ri]||[];
     panel.innerHTML=
       '<div class="rly"><div class="rsr"><div class="rss" id="rs'+ri+'">'+
-      sls.map(s=>'<div style="flex-shrink:0;width:100%"><img src="'+s+'" alt="'+r.name+'"></div>').join('')+
+      sls.map(s=>'<div style="flex-shrink:0;width:100%"><img src="'+prefixImg(s)+'" alt="'+r.name+'"></div>').join('')+
       '</div><div class="rths">'+
-      sls.map((s,ii)=>'<img class="rth'+(ii===0?' on':'')+'" src="'+s+'" onclick="roomSl('+ri+','+ii+',this)">').join('')+
+      sls.map((s,ii)=>'<img class="rth'+(ii===0?' on':'')+'" src="'+prefixImg(s)+'" onclick="roomSl('+ri+','+ii+',this)">').join('')+
       '</div></div>'+
       '<div><div class="rno">'+r.no+'</div><div class="rnm">'+r.name+'</div>'+
       '<p class="rdc">'+r.desc+'</p>'+
@@ -478,7 +488,7 @@ function render(){
     const el=document.createElement('div');
     el.className='scd';
     const imgH=im.spots[i]
-      ? '<img src="'+im.spots[i]+'" alt="'+s.name+'">'
+      ? '<img src="'+prefixImg(im.spots[i])+'" alt="'+s.name+'">'
       : '<div class="sph"><span class="ico">'+s.icon+'</span><span>이미지 교체</span></div>';
     el.innerHTML='<div class="sim">'+imgH+'</div><div class="sbd"><div class="snm">'+s.name+'</div><span class="sdt">'+s.dist+'</span><p class="sdc">'+s.desc+'</p></div>';
     sg.appendChild(el);
