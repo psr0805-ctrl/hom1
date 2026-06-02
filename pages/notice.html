@@ -77,13 +77,14 @@
 <script src="../common.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(); renderNav(); renderFooter(); initReveal();
+  applyTheme(); renderNav(); renderFooter();
   
   const list = document.getElementById("rules-list");
   CONFIG.reservation.rules.forEach(r=>{
     const li=document.createElement("li"); li.textContent=r; list.appendChild(li);
   });
 
+  initReveal();
 });
 </script>
 </body>

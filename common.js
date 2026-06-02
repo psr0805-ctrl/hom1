@@ -144,5 +144,12 @@ function initReveal(){
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+  document.querySelectorAll('.rv').forEach(el => {
+    obs.observe(el);
+    // 이미 화면 안에 있으면 즉시 표시 (관찰자 누락 방지)
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+      el.classList.add('on');
+    }
+  });
 }

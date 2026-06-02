@@ -88,7 +88,7 @@
 <script src="../common.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(); renderNav(); renderFooter(); initReveal();
+  applyTheme(); renderNav(); renderFooter();
   
   const p=CONFIG.pension, c=CONFIG.contact;
   document.getElementById("t-atit").innerHTML=p.intro_title;
@@ -98,6 +98,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById("t-dir").innerHTML=c.directions;
   document.getElementById("t-nb").innerHTML=c.nearby;
 
+  initReveal();
 });
 </script>
 </body>

@@ -51,7 +51,7 @@
 <script src="../common.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(); renderNav(); renderFooter(); initReveal();
+  applyTheme(); renderNav(); renderFooter();
   
   const grid = document.getElementById("fac-detail-grid");
   const im = CONFIG.images;
@@ -73,6 +73,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     list.appendChild(el);
   });
 
+  initReveal();
 });
 </script>
 </body>

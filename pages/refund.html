@@ -75,7 +75,7 @@
 <script src="../common.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(); renderNav(); renderFooter(); initReveal();
+  applyTheme(); renderNav(); renderFooter();
   
   const rt = document.getElementById("refund-table");
   let html = "<tr><th>취소 시점</th><th>환불 금액</th></tr>";
@@ -85,6 +85,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
   rt.innerHTML = html;
 
+  initReveal();
 });
 </script>
 </body>

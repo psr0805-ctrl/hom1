@@ -48,7 +48,7 @@
 <script src="../common.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(); renderNav(); renderFooter(); initReveal();
+  applyTheme(); renderNav(); renderFooter();
   
   // 서브탭
   const tabs = document.getElementById("room-tabs");
@@ -80,6 +80,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     list.appendChild(el);
   });
 
+  initReveal();
 });
 </script>
 </body>

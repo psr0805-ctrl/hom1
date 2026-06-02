@@ -45,7 +45,7 @@
 <script src="../common.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded',()=>{
-  applyTheme(); renderNav(); renderFooter(); initReveal();
+  applyTheme(); renderNav(); renderFooter();
   
   const sf = document.getElementById("spots-full");
   const im = CONFIG.images;
@@ -60,6 +60,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     sf.appendChild(el);
   });
 
+  initReveal();
 });
 </script>
 </body>
