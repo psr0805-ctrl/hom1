@@ -16,11 +16,11 @@
 .fdc img{width:100%;height:220px;object-fit:cover;display:block;}
 .fdc-body{padding:22px 20px 24px;}
 .fdc-icon{font-size:1.6rem;margin-bottom:8px;}
-.fdc-name{font-family:"Nanum Myeongjo",serif;font-size:1.15rem;font-weight:800;margin-bottom:6px;}
+.fdc-name{font-family:"Nanum Myeongjo",serif;font-size:1.35rem;font-weight:800;margin-bottom:6px;}
 .fdc-sub{font-size:.74rem;font-weight:600;color:var(--g);letter-spacing:.06em;margin-bottom:10px;}
-.fdc-detail{font-size:.83rem;color:#555;line-height:1.85;}
+.fdc-detail{font-size:.92rem;color:#555;line-height:1.9;}
 .fac-list-full{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;}
-.fli-full{display:flex;align-items:center;gap:10px;padding:13px 16px;background:#fff;font-size:.83rem;font-weight:500;border:1px solid #f0f0f0;}
+.fli-full{display:flex;align-items:center;gap:10px;padding:15px 18px;background:#fff;font-size:.92rem;font-weight:500;border:1px solid #f0f0f0;}
 .fli-full .ico{font-size:1.1rem;}
 @media(max-width:860px){.fac-detail-grid{grid-template-columns:1fr;}.fac-list-full{grid-template-columns:1fr 1fr;}}
 </style>
@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     const el=document.createElement("div");
     el.className="fdc rv";
     el.innerHTML="<img src=\""+img(im.fac_cards[i]||"")+"\" alt=\""+f.name+"\">"+
-      "<div class=\"fdc-body\"><div class=\"fdc-icon\">"+f.icon+"</div>"+
+      "<div class=\"fdc-body\">"+
       "<div class=\"fdc-name\">"+f.name+"</div>"+
       "<div class=\"fdc-sub\">"+f.sub+"</div>"+
       "<p class=\"fdc-detail\">"+f.detail+"</p></div>";
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   CONFIG.fac_list.forEach(f=>{
     const el=document.createElement("div");
     el.className="fli-full";
-    el.innerHTML="<span class=\"ico\">"+f.icon+"</span>"+f.text;
+    el.innerHTML="<span class=\"ico\" style=\"color:var(--g);font-weight:700;\">·</span>"+f.text;
     list.appendChild(el);
   });
 

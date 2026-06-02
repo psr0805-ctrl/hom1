@@ -16,10 +16,10 @@
 .hsl.on{opacity:1;}
 .hov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.03),rgba(0,0,0,.58) 80%);}
 .hct{position:absolute;bottom:90px;left:60px;right:60px;z-index:2;animation:fu .9s ease .2s both;}
-.htag{display:inline-block;font-size:.67rem;font-weight:700;letter-spacing:.2em;padding:5px 13px;margin-bottom:16px;text-transform:uppercase;background:var(--y);color:#1c1c1c;}
-.hct h1{font-family:"Nanum Myeongjo",serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px;}
+.htag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.2em;padding:5px 13px;margin-bottom:16px;text-transform:uppercase;background:var(--y);color:#1c1c1c;}
+.hct h1{font-family:"Nanum Myeongjo",serif;font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px;}
 .hct h1 em{font-style:italic;color:var(--y);}
-.hct p{font-size:.93rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.7;margin-bottom:26px;}
+.hct p{font-size:1.05rem;color:rgba(255,255,255,.85);font-weight:300;line-height:1.7;margin-bottom:26px;}
 .hbts{display:flex;gap:11px;}
 .hb1{background:var(--y);color:#1c1c1c;padding:12px 28px;font-size:.84rem;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:all .2s;}
 .hb1:hover{background:#e0b030;transform:translateY(-2px);}
@@ -41,8 +41,8 @@
 .abstamp{position:absolute;right:-14px;top:46%;transform:translateY(-50%);width:78px;height:78px;border-radius:50%;background:var(--y);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.57rem;font-weight:700;text-align:center;line-height:1.5;z-index:2;}
 .abpts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:24px;}
 .abpt{background:#fff;padding:14px 15px;border-left:3px solid var(--gl);}
-.abpt strong{display:block;font-size:.81rem;font-weight:700;margin-bottom:2px;}
-.abpt span{font-size:.74rem;color:#666;}
+.abpt strong{display:block;font-size:.9rem;font-weight:700;margin-bottom:2px;}
+.abpt span{font-size:.82rem;color:#666;}
 /* room preview */
 #room-preview{background:#fff;}
 .rp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;}
@@ -50,9 +50,9 @@
 .rp-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
 .rp-card:hover img{transform:scale(1.05);}
 .rp-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px 18px;}
-.rp-no{font-family:"Cormorant Garamond",serif;font-size:2rem;font-weight:600;color:rgba(255,255,255,.4);line-height:1;}
-.rp-nm{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:4px;}
-.rp-ds{font-size:.72rem;color:rgba(255,255,255,.7);}
+.rp-no{font-family:"Cormorant Garamond",serif;font-size:2.4rem;font-weight:600;color:rgba(255,255,255,.4);line-height:1;}
+.rp-nm{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.rp-ds{font-size:.82rem;color:rgba(255,255,255,.75);}
 .rp-more{display:block;text-align:center;margin-top:28px;font-size:.8rem;font-weight:600;color:var(--g);text-decoration:none;letter-spacing:.08em;}
 .rp-more:hover{text-decoration:underline;}
 /* fac */
@@ -62,13 +62,13 @@
 .ffi img{width:100%;height:400px;object-fit:cover;}
 .ffis{position:absolute;bottom:-18px;right:-18px;width:48%;height:150px;object-fit:cover;border:4px solid var(--cr);box-shadow:8px 8px 22px rgba(0,0,0,.13);}
 .fls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:24px;}
-.fli{display:flex;align-items:center;gap:9px;padding:10px 12px;background:#fff;font-size:.81rem;font-weight:500;}
+.fli{display:flex;align-items:center;gap:9px;padding:12px 14px;background:#fff;font-size:.9rem;font-weight:500;}
 /* contact */
 #contact-home{padding:80px 0;position:relative;overflow:hidden;}
 #contact-home::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(90,170,130,.28),transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(20,60,40,.38),transparent 50%);}
 #contact-home .cn{position:relative;z-index:1;}
 .cgr{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;}
-.cti{font-family:"Nanum Myeongjo",serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:#fff;margin-bottom:12px;}
+.cti{font-family:"Nanum Myeongjo",serif;font-size:clamp(2.1rem,3.5vw,3rem);font-weight:800;color:#fff;margin-bottom:12px;}
 .cbt{display:flex;flex-direction:column;gap:9px;margin-top:22px;}
 .cb{display:flex;align-items:center;gap:11px;padding:13px 20px;font-size:.86rem;font-weight:700;text-decoration:none;transition:all .2s;}
 .cb:hover{transform:translateX(4px);}
@@ -76,11 +76,12 @@
 .cb-t{background:#fff;}
 .cb-n{background:#03C75A;color:#fff;}
 .cinf{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:26px;}
-.cii{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.cii{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.cii > div{border-left:2px solid var(--y);padding-left:14px;}
 .cii:last-child{border-bottom:none;}
 .cii-i{font-size:1rem;flex-shrink:0;margin-top:2px;}
-.cii h4{font-size:.79rem;font-weight:700;color:#fff;margin-bottom:3px;}
-.cii p{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.5;}
+.cii h4{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.cii p{font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.6;}
 @media(max-width:860px){
   .abg,.fhd,.cgr{grid-template-columns:1fr;gap:28px;}
   .abib{height:250px;}.abstamp{display:none;}
@@ -134,7 +135,7 @@
       <div class="abib rv">
         <img class="abi-a" id="img-am" src="" alt="">
         <img class="abi-b" id="img-as" src="" alt="">
-        <div class="abstamp">🌿<br>계룡산<br>자락</div>
+        <div class="abstamp">계룡산<br>자락</div>
       </div>
       <div class="rv d1">
         <p class="slb">Pension Introduction</p>
@@ -186,16 +187,16 @@
         <h2 class="cti">올여름, 여기서<br>특별한 추억을</h2>
         <p style="font-size:.89rem;color:rgba(255,255,255,.7);line-height:1.85;font-weight:300">주말·성수기 예약은 빠르게 마감됩니다.<br>아래 채널로 편하게 문의해 주세요.</p>
         <div class="cbt">
-          <a id="t-kakao" href="#" class="cb cb-k">💬 카카오톡 채널 문의</a>
+          <a id="t-kakao" href="#" class="cb cb-k">카카오톡 채널 문의</a>
           <a id="t-tel" href="#" class="cb cb-t"></a>
-          <a id="t-naver" href="#" class="cb cb-n">📅 네이버 예약</a>
+          <a id="t-naver" href="#" class="cb cb-n">네이버 예약</a>
         </div>
       </div>
       <div class="cinf rv d1">
-        <div class="cii"><div class="cii-i">📍</div><div><h4>주소</h4><p id="t-addr"></p></div></div>
-        <div class="cii"><div class="cii-i">🕐</div><div><h4>체크인 / 체크아웃</h4><p id="t-ci"></p></div></div>
-        <div class="cii"><div class="cii-i">🚗</div><div><h4>오시는 길</h4><p id="t-dir"></p></div></div>
-        <div class="cii"><div class="cii-i">🌲</div><div><h4>주변 명소</h4><p id="t-nb"></p></div></div>
+        <div class="cii"><div><h4>주소</h4><p id="t-addr"></p></div></div>
+        <div class="cii"><div><h4>체크인 / 체크아웃</h4><p id="t-ci"></p></div></div>
+        <div class="cii"><div><h4>오시는 길</h4><p id="t-dir"></p></div></div>
+        <div class="cii"><div><h4>주변 명소</h4><p id="t-nb"></p></div></div>
       </div>
     </div>
   </div>
@@ -286,7 +287,7 @@ function renderIndex(){
   CONFIG.fac_list.forEach(f=>{
     const el=document.createElement('div');
     el.className='fli';
-    el.innerHTML='<span>'+f.icon+'</span>'+f.text;
+    el.innerHTML='<span style="color:var(--g);font-weight:700;">·</span>'+f.text;
     fl.appendChild(el);
   });
   const fg=document.getElementById('fgr');
@@ -294,7 +295,7 @@ function renderIndex(){
     const el=document.createElement('div');
     el.className='fcd';
     el.onclick=()=>openFacModal(f, img(im.fac_cards[i]||''));
-    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fibg">'+f.icon+'</div><div class="fcd-hint">자세히</div>';
+    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fcd-hint">자세히 보기</div>';
     fg.appendChild(el);
   });
 
@@ -302,7 +303,7 @@ function renderIndex(){
   document.getElementById('t-kakao').href = c.kakao_url;
   document.getElementById('t-naver').href = c.naver_url;
   document.getElementById('t-tel').href = 'tel:'+c.tel;
-  document.getElementById('t-tel').textContent = '📞 전화 예약 · '+c.tel;
+  document.getElementById('t-tel').textContent = '전화 예약 · '+c.tel;
   document.getElementById('t-addr').innerHTML = c.address+'<br>'+c.address_detail;
   document.getElementById('t-ci').textContent = '체크인 '+c.checkin+' · 체크아웃 '+c.checkout;
   document.getElementById('t-dir').innerHTML = c.directions;
@@ -324,7 +325,7 @@ function hs(d){goH(hcur+d);}
 
 function openFacModal(f, imgSrc){
   document.getElementById('fm-img').src=imgSrc;
-  document.getElementById('fm-icon').textContent=f.icon;
+  document.getElementById('fm-icon').textContent='';
   document.getElementById('fm-name').textContent=f.name;
   document.getElementById('fm-sub').textContent=f.sub;
   document.getElementById('fm-detail').textContent=f.detail||'';

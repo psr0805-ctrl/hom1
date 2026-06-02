@@ -13,14 +13,18 @@
 <style>
 .rd-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;}
 .rd-slider{position:relative;overflow:hidden;}
+.rd-arr{position:absolute;top:calc(210px - 21px);z-index:5;background:rgba(0,0,0,.35);border:none;color:#fff;width:42px;height:42px;cursor:pointer;font-size:1.1rem;transition:background .2s;}
+.rd-arr:hover{background:rgba(0,0,0,.6);}
+.rd-arr-p{left:0;}
+.rd-arr-n{right:0;}
 .rd-slides{display:flex;transition:transform .5s;}
 .rd-slides img{width:100%;height:420px;object-fit:cover;flex-shrink:0;}
 .rd-thumbs{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
 .rd-thumb{width:80px;height:60px;object-fit:cover;cursor:pointer;opacity:.5;border:2px solid transparent;transition:opacity .2s;}
 .rd-thumb.on{opacity:1;border-color:var(--g);}
 .rd-no{font-family:"Cormorant Garamond",serif;font-size:4rem;font-weight:600;color:var(--gp);line-height:1;margin-bottom:2px;}
-.rd-name{font-family:"Nanum Myeongjo",serif;font-size:1.6rem;font-weight:800;margin-bottom:14px;}
-.rd-detail{font-size:.88rem;color:#555;line-height:1.9;margin-bottom:20px;}
+.rd-name{font-family:"Nanum Myeongjo",serif;font-size:1.9rem;font-weight:800;margin-bottom:14px;}
+.rd-detail{font-size:.97rem;color:#555;line-height:1.95;margin-bottom:20px;}
 .rd-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
 .rd-tag{background:var(--gp);color:var(--g);font-size:.72rem;font-weight:600;padding:5px 12px;}
 .rd-cap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e4e4e0;border:1px solid #e4e4e0;margin-bottom:24px;}
@@ -52,6 +56,8 @@
   <div class="cn">
     <div class="rd-layout rv">
       <div class="rd-slider">
+        <button class="rd-arr rd-arr-p" onclick="rdGo(rdCur-1)">&#8592;</button>
+        <button class="rd-arr rd-arr-n" onclick="rdGo(rdCur+1)">&#8594;</button>
         <div class="rd-slides" id="rd-slides"></div>
         <div class="rd-thumbs" id="rd-thumbs"></div>
       </div>
@@ -121,7 +127,8 @@ function renderRoomDetail(){
   // 슬라이더
   const slides = document.getElementById("rd-slides");
   const thumbs = document.getElementById("rd-thumbs");
-  (im.rooms[ri]||[]).forEach((src,ii)=>{
+  const roomImgs = im.rooms[ri]||[];
+  roomImgs.forEach((src,ii)=>{
     const s=document.createElement("img");
     s.src=img(src); s.alt=r.name;
     slides.appendChild(s);
@@ -131,6 +138,7 @@ function renderRoomDetail(){
     t.onclick=()=>rdSlide(ii,t);
     thumbs.appendChild(t);
   });
+  startRdAuto(roomImgs.length);
 
   // 서브탭
   const tabs = document.getElementById("room-tabs");
@@ -150,9 +158,19 @@ function renderRoomDetail(){
     (prev ? "<a href=\""+href("pages/room-"+prev.no+".html")+"\">&larr; "+prev.no+"호 · "+prev.name+"</a>" : "<span></span>") +
     (next ? "<a href=\""+href("pages/room-"+next.no+".html")+"\">"+next.no+"호 · "+next.name+" &rarr;</a>" : "<span></span>");
 }
-function rdSlide(ii, thumbEl){
-  document.getElementById("rd-slides").style.transform="translateX(-"+(ii*100)+"%)";
-  document.querySelectorAll(".rd-thumb").forEach(t=>t.classList.remove("on"));
-  thumbEl.classList.add("on");
+let rdCur=0, rdTotal=0, rdTimer;
+function rdGo(ii){
+  rdCur=(ii+rdTotal)%rdTotal;
+  document.getElementById("rd-slides").style.transform="translateX(-"+(rdCur*100)+"%)";
+  const thumbs=document.querySelectorAll(".rd-thumb");
+  thumbs.forEach(t=>t.classList.remove("on"));
+  if(thumbs[rdCur])thumbs[rdCur].classList.add("on");
+  clearInterval(rdTimer);
+  rdTimer=setInterval(()=>rdGo(rdCur+1),3500);
+}
+function rdSlide(ii, thumbEl){ rdGo(ii); }
+function startRdAuto(total){
+  rdTotal=total;
+  if(total>1) rdTimer=setInterval(()=>rdGo(rdCur+1),3500);
 }
 </script>
