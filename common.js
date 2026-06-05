@@ -41,9 +41,8 @@ function renderNav(activePage){
     { label:'부대시설', href:'pages/facilities.html', sub:[] },
     { label:'주변관광', href:'pages/spots.html', sub:[] },
     { label:'예약/문의', href:'pages/reservation.html', sub:[
-      { label:'예약안내',  href:'pages/reservation.html' },
-      { label:'환불규정',  href:'pages/refund.html' },
-      { label:'이용안내',  href:'pages/notice.html' },
+      { label:'예약안내',      href:'pages/reservation.html' },
+      { label:'이용·환불안내', href:'pages/notice.html' },
     ]},
   ];
 
@@ -76,7 +75,7 @@ function renderNav(activePage){
     '<div class="nav-inner">' +
       '<a href="' + href('index.html') + '" class="nlogo">' + p.name_en + '<small>' + p.name_ko + '</small></a>' +
       '<ul class="nav-menu">' + desktopMenu + '</ul>' +
-      '<a href="' + href('pages/reservation.html') + '" class="nrsv">예약 문의</a>' +
+      '<a href="' + CONFIG.contact.kakao_url + '" target="_blank" class="nrsv">실시간 문의</a>' +
       '<button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>' +
     '</div>';
 
@@ -87,7 +86,7 @@ function renderNav(activePage){
     mob.id = 'mobile-menu';
     document.body.appendChild(mob);
   }
-  mob.innerHTML = mobileMenu + '<a href="' + href('pages/reservation.html') + '" class="mob-rsv">예약 문의하기</a>';
+  mob.innerHTML = mobileMenu + '<a href="' + CONFIG.contact.kakao_url + '" target="_blank" class="mob-rsv">실시간 문의하기</a>';
 
   // 스크롤
   window.addEventListener('scroll', () => {

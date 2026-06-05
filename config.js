@@ -61,6 +61,12 @@ const CONFIG = {
   /* 5. 이미지 경로 */
   images: {
     hero:      ['images/main/main_01.jpg','images/main/main_02.jpg','images/room102/102_01.jpg','images/room201/201_01.jpg'],
+    hero_slides: [
+      { img:'images/main/main_01.jpg',   tag:'계룡산 자락 · 프라이빗 독채', h1:'자연이 품은',   em:'특별한 하룻밤', sub:'수영장, BBQ, 스파, 글램핑까지<br>가족과 함께하는 모든 순간을 담았습니다' },
+      { img:'images/main/main_02.jpg',   tag:'BBQ & 야외 테라스',          h1:'숯불 위에 익는', em:'여름밤의 낭만', sub:'전용 테라스에서 즐기는<br>특별한 바비큐 파티' },
+      { img:'images/room102/102_01.jpg', tag:'복층 독채 객실',             h1:'넓고 아늑한',    em:'프라이빗 공간', sub:'세 개의 독립 동에서<br>온전히 우리만의 시간을' },
+      { img:'images/room201/201_01.jpg', tag:'루프탑 글램핑',              h1:'별빛 아래',      em:'잊지 못할 밤',  sub:'옥상 글램핑 텐트에서<br>특별한 캠핑의 추억을' },
+    ],
     about_main: 'images/main/main_01.jpg',
     about_sub:  'images/main/main_02.jpg',
     fac_main:   'images/main/main_02.jpg',

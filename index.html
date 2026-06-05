@@ -16,10 +16,10 @@
 .hsl.on{opacity:1;}
 .hov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.03),rgba(0,0,0,.58) 80%);}
 .hct{position:absolute;bottom:90px;left:60px;right:60px;z-index:2;animation:fu .9s ease .2s both;}
-.htag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.2em;padding:5px 13px;margin-bottom:16px;text-transform:uppercase;background:var(--y);color:#1c1c1c;}
-.hct h1{font-family:"Nanum Myeongjo",serif;font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px;}
+.htag{display:inline-block;font-size:1rem;font-weight:700;letter-spacing:.15em;padding:7px 18px;margin-bottom:20px;background:var(--y);color:#1c1c1c;}
+.hct h1{font-family:"Nanum Myeongjo",serif;font-size:clamp(3rem,7vw,5.4rem);font-weight:800;color:#fff;line-height:1.18;margin-bottom:16px;}
 .hct h1 em{font-style:italic;color:var(--y);}
-.hct p{font-size:1.05rem;color:rgba(255,255,255,.85);font-weight:300;line-height:1.7;margin-bottom:26px;}
+.hct p{font-size:1.2rem;color:rgba(255,255,255,.88);font-weight:300;line-height:1.7;margin-bottom:30px;}
 .hbts{display:flex;gap:11px;}
 .hb1{background:var(--y);color:#1c1c1c;padding:12px 28px;font-size:.84rem;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:all .2s;}
 .hb1:hover{background:#e0b030;transform:translateY(-2px);}
@@ -208,19 +208,6 @@
   </div>
 </section>
 
-<!-- 시설 모달 -->
-<div id="fac-modal" onclick="if(event.target===this)closeFacModal()">
-  <div class="fm-wrap">
-    <button class="fm-close" onclick="closeFacModal()">✕</button>
-    <img class="fm-img" id="fm-img" src="" alt="">
-    <div class="fm-body">
-      <div class="fm-icon" id="fm-icon"></div>
-      <div class="fm-name" id="fm-name"></div>
-      <div class="fm-sub" id="fm-sub"></div>
-      <p class="fm-detail" id="fm-detail"></p>
-    </div>
-  </div>
-</div>
 
 
 <footer id="footer"></footer>
@@ -242,25 +229,25 @@ function renderIndex(){
   document.title = p.name_ko;
 
   // 히어로
-  document.getElementById('t-slogan').textContent = p.slogan;
-  document.getElementById('t-h1').innerHTML = p.hero_h1 + '<br><em>' + p.hero_em + '</em>';
-  document.getElementById('t-hsub').innerHTML = p.hero_sub;
-  document.getElementById('t-rsv-btn').href = href('pages/reservation.html');
+  document.getElementById('t-rsv-btn').href = CONFIG.contact.kakao_url;
   document.getElementById('t-rooms-btn').href = href('pages/rooms.html');
   document.getElementById('t-rooms-more').href = href('pages/rooms.html');
 
-  // 히어로 슬라이더
+  // 히어로 슬라이더 (슬라이드별 문구)
+  const slides = im.hero_slides || im.hero.map(s => ({img:s, tag:p.slogan, h1:p.hero_h1, em:p.hero_em, sub:p.hero_sub}));
+  window.HERO_SLIDES = slides;
   const hs=document.getElementById('hslides'), hd=document.getElementById('hdots');
-  im.hero.forEach((src,i)=>{
+  slides.forEach((sl,i)=>{
     const s=document.createElement('div');
     s.className='hsl'+(i===0?' on':'');
-    s.style.backgroundImage='url('+img(src)+')';
+    s.style.backgroundImage='url('+img(sl.img)+')';
     hs.appendChild(s);
     const d=document.createElement('div');
     d.className='dot'+(i===0?' on':'');
     d.onclick=()=>goH(i);
     hd.appendChild(d);
   });
+  setHeroText(0);
 
   // 소개
   document.getElementById('t-atit').innerHTML = p.intro_title;
@@ -300,8 +287,8 @@ function renderIndex(){
   CONFIG.facilities.forEach((f,i)=>{
     const el=document.createElement('div');
     el.className='fcd';
-    el.onclick=()=>openFacModal(f, img(im.fac_cards[i]||''));
-    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div><div class="fcd-hint">자세히 보기</div>';
+    el.onclick=()=>{location.href=href('pages/facilities.html');};
+    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div>';
     fg.appendChild(el);
   });
 
@@ -320,29 +307,31 @@ function renderIndex(){
 }
 
 let hcur=0, htmr;
+function setHeroText(i){
+  const slides = window.HERO_SLIDES || [];
+  const s = slides[i];
+  if(!s) return;
+  const tEl=document.getElementById('t-slogan');
+  const hEl=document.getElementById('t-h1');
+  const pEl=document.getElementById('t-hsub');
+  // 페이드 효과
+  [tEl,hEl,pEl].forEach(el=>{el.style.transition='opacity .4s';el.style.opacity='0';});
+  setTimeout(()=>{
+    tEl.textContent = s.tag;
+    hEl.innerHTML = s.h1 + '<br><em>' + s.em + '</em>';
+    pEl.innerHTML = s.sub;
+    [tEl,hEl,pEl].forEach(el=>{el.style.opacity='1';});
+  },200);
+}
 function goH(n){
   const sl=document.querySelectorAll('.hsl'), dt=document.querySelectorAll('.dot');
   sl[hcur].classList.remove('on'); dt[hcur].classList.remove('on');
   hcur=(n+sl.length)%sl.length;
   sl[hcur].classList.add('on'); dt[hcur].classList.add('on');
+  setHeroText(hcur);
   clearInterval(htmr); htmr=setInterval(()=>goH(hcur+1),4500);
 }
 function hs(d){goH(hcur+d);}
-
-function openFacModal(f, imgSrc){
-  document.getElementById('fm-img').src=imgSrc;
-  document.getElementById('fm-icon').textContent='';
-  document.getElementById('fm-name').textContent=f.name;
-  document.getElementById('fm-sub').textContent=f.sub;
-  document.getElementById('fm-detail').textContent=f.detail||'';
-  document.getElementById('fac-modal').classList.add('on');
-  document.body.style.overflow='hidden';
-}
-function closeFacModal(){
-  document.getElementById('fac-modal').classList.remove('on');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFacModal();});
 
 window.addEventListener('DOMContentLoaded',()=>{
   applyTheme(); renderNav(); renderFooter(); initReveal();
