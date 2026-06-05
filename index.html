@@ -288,7 +288,7 @@ function renderIndex(){
     const el=document.createElement('div');
     el.className='fcd';
     el.onclick=()=>{location.href=href('pages/facilities.html');};
-    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div><div class="fsb">'+f.sub+'</div></div>';
+    el.innerHTML='<img src="'+img(im.fac_cards[i]||'')+'" alt="'+f.name+'"><div class="fov"><div class="fnm">'+f.name+'</div></div>';
     fg.appendChild(el);
   });
 
